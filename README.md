@@ -8,9 +8,9 @@ add more here
 
 ## Mock-Up
 
-Github Repository Link: https://github.com/jscobie/day-scheduler
+Github Repository Link: https://github.com/jscobie/weather-dashboard
 
-Deployed page Link: https://jscobie.github.io/day-scheduler/
+Deployed page Link: https://jscobie.github.io/weather-dashboard/
 
 The following animation demonstrates the application functionality:
 
@@ -22,7 +22,7 @@ Required items are index.html, script.js, and style.css files (assets folder has
 
 Additionally to clone to your computer using SSH from GitHub:
 ```
-git clone https://github.com/jscobie/day-scheduler.git
+git clone https://github.com/jscobie/weather-dashboard.git
 ```
 
 ## Usage
