@@ -18,19 +18,19 @@
     </header>
 
     <main>
-        <section class="search-section bg-dark text-white d-inline-flex p-4 container-fluid">
+        <section class="search-section container-fluid">
             <!--search-panel -->
             <div class="row">
-                <div class="search-box col-4"> 
-                    <h3>Search for a City:</h3>
+                <div class="search-box col-4 p-5 bg-dark text-white"> 
+                    <h2>Search for a City:</h2>
                     <form>
                         <div class="form-row align-items-center">
-                            <div class="col-8 search-input">
+                            <div class="search-input">
                                 <!--search-form/field-->
                                 <label class="sr-only" for="cityName">City</label>
                                 <input type="text" class="form-control" id="cityName" placeholder="Enter City">
                             </div>
-                            <div class="col-1 search-button-box">
+                            <div class="search-button-box">
                                 <!--search-button-panel-->
                                 <button type="submit" class="btn btn-primary" id="search-button"><i class="fa fa-search"
                                         aria-hidden="true"></i></button>
@@ -42,18 +42,42 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-8">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit ipsum laudantium sequi ipsa molestiae!
-                        Aut.</p>
-                </div>
+                <section id= "forecast-panel" class="col-8 mt-1 ml-1 row">
+                    <!-- this is the container/row for the entire current and 5 day weather -->
+                    <!-- need to have 2 rows: top row is col-12 for current, bottom is split into 5 columns -->
+                    <div id="current-forecast" class="row col-12 border border-dark">
+                        <h3 class="text-center" id="city-name">Detroit  (<span id="current-date">Oct 19th, 2022</span>)</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Temp: </li>
+                            <li class="list-group-item">Wind Speed: </li>
+                            <li class="list-group-item">Humidity: </li>
+                        </ul>
+                    </div>
+                    <div id="future-forecast1" class="row col-2 m-1 bg-dark text-light">
+                        <p>Next Day</p>
+                        <ul>
+                            <li>Temp: </li>
+                            <li>Wind Speed: </li>
+                            <li>Humidity: </li>
+                        </ul>
+                        
+                    </div>
+                    <div id="future-forecast2" class="row col-2 m-1 bg-dark text-light">
+                        <p>Next Day</p>
+                    </div>
+                    <div id="future-forecast3" class="row col-2 m-1 bg-dark text-light">
+                        <p>Next Day</p>
+                    </div>
+                    <div id="future-forecast4" class="row col-2 m-1 bg-dark text-light">
+                        <p>Next Day</p>
+                    </div>
+                    <div id="future-forecast5" class="row col-2 m-1 bg-dark text-light">
+                        <p>Next Day</p>
+                    </div>
+                    
             </div>
         </section>
         
-        
-        <section>
-
-        </section>
-
     </main>
 
 
