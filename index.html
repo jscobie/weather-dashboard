@@ -21,11 +21,11 @@
         <section class="search-section container-fluid">
             <!--search-panel -->
             <div class="row">
-                <div class="search-box col-4 p-5 bg-dark text-white"> 
+                <div class="search-box col-3 p-5 bg-dark text-white"> 
                     <h2>Search for a City:</h2>
                     <form>
                         <div class="form-row align-items-center">
-                            <div class="search-input">
+                            <div class="search-input col-9">
                                 <!--search-form/field-->
                                 <label class="sr-only" for="cityName">City</label>
                                 <input type="text" class="form-control" id="cityName" placeholder="Enter City">
@@ -42,39 +42,57 @@
                         </div>
                     </form>
                 </div>
-                <section id= "forecast-panel" class="col-8 mt-1 ml-1 row">
+                <section id= "forecast-panel" class="col-9 mt-1 ml-1 row d-flex justify-content-around">
                     <!-- this is the container/row for the entire current and 5 day weather -->
                     <!-- need to have 2 rows: top row is col-12 for current, bottom is split into 5 columns -->
-                    <div id="current-forecast" class="row col-12 border border-dark">
+                    <div id="current-forecast" class="row col-12 border rounded border-dark flex-column">
                         <h3 class="text-center" id="city-name">Detroit  (<span id="current-date">Oct 19th, 2022</span>)</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Temp: </li>
-                            <li class="list-group-item">Wind Speed: </li>
-                            <li class="list-group-item">Humidity: </li>
-                        </ul>
-                    </div>
-                    <div id="future-forecast1" class="row col-2 m-1 bg-dark text-light">
-                        <p>Next Day</p>
-                        <ul>
+                        <ul class="list-unstyled">
                             <li>Temp: </li>
                             <li>Wind Speed: </li>
                             <li>Humidity: </li>
                         </ul>
-                        
                     </div>
-                    <div id="future-forecast2" class="row col-2 m-1 bg-dark text-light">
-                        <p>Next Day</p>
+                    <div id="future-forecast0" class="future-panel row card-body rounded col-2 m-1 bg-dark text-light">
+                        <p id="date-0">Day+1</p>
+                        <ul class="list-unstyled">
+                            <li>Temp: </li>
+                            <li>Wind Speed: </li>
+                            <li>Humidity: </li>
+                        </ul>
                     </div>
-                    <div id="future-forecast3" class="row col-2 m-1 bg-dark text-light">
-                        <p>Next Day</p>
+                    <div id="future-forecast1" class="future-panel row card-body rounded col-2 m-1 bg-dark text-light">
+                        <p id="date-1">Day+2</p>
+                        <ul class="list-unstyled">
+                            <li>Temp: </li>
+                            <li>Wind Speed: </li>
+                            <li>Humidity: </li>
+                        </ul>
                     </div>
-                    <div id="future-forecast4" class="row col-2 m-1 bg-dark text-light">
-                        <p>Next Day</p>
+                    <div id="future-forecast2" class="future-panel row card-body rounded col-2 m-1 bg-dark text-light">
+                        <p id="date-2">Day+3</p>
+                        <ul class="list-unstyled">
+                            <li>Temp: </li>
+                            <li>Wind Speed: </li>
+                            <li>Humidity: </li>
+                        </ul>
                     </div>
-                    <div id="future-forecast5" class="row col-2 m-1 bg-dark text-light">
-                        <p>Next Day</p>
+                    <div id="future-forecast3" class="future-panel row card-body rounded col-2 m-1 bg-dark text-light">
+                        <p id="date-3">Day+4</p>
+                        <ul class="list-unstyled">
+                            <li>Temp: </li>
+                            <li>Wind Speed: </li>
+                            <li>Humidity: </li>
+                        </ul>
                     </div>
-                    
+                    <div id="future-forecast4" class="future-panel row card-body rounded col-2 m-1 bg-dark text-light">
+                        <p id="date-4">Day+5</p>
+                        <ul class="list-unstyled">
+                            <li>Temp: </li>
+                            <li>Wind Speed: </li>
+                            <li>Humidity: </li>
+                        </ul>
+                    </div>                    
             </div>
         </section>
         
