@@ -6,7 +6,7 @@ var apiKey = "604cd5f925465b3056536dc73b75de09"
 // fetch request to get current date forecast data
 // 
 
-// localStorage.clear();
+// s of 6:12pm on 10/22 the call gets a 401 error, unauthorized?
 
 function findCity() {
     var cityName = titleCase($("#cityName")[0].value.trim());
@@ -106,22 +106,20 @@ function convertUnixTime(data, index) {
     return (dateObject.toLocaleDateString());
 }
 
-$("#search-button").on("click", function (e) {
-    e.preventDefault();
+$("#search-button").on("click", function (event) {
+    event.preventDefault();
 
     findCity();
 
     $("form")[0].reset();
 })
 
-// not working
-// $("#del-button").on("click", function (e) {
-//     e.preventDefault();
+$("#del-button").on("click", function (event) {
+    event.preventDefault();
 
-//     findCity();
-
-//     $("form")[0].reset();
-// })
+    localStorage.clear();
+    location.reload();
+})
 
 $(".city-list-box").on("click", ".city-name", function () {
 
