@@ -30,7 +30,7 @@ section {
 
 .results-panel {
     padding-bottom: 10px;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .current-conditions-box {
@@ -59,7 +59,7 @@ section {
 }
 
 .card-body {
-    background-color: lightskyblue;
+    background-color: lightsteelblue;
 }
 
 /* Viewports Styling*/
