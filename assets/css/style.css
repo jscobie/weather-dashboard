@@ -16,7 +16,6 @@ section {
 }
 
 .search-panel {
-    /* width: 25%; */
     margin: 10px 20px 0 10px;
     padding: 20px 0 10px 30px;
 }
@@ -30,31 +29,23 @@ section {
 }
 
 .results-panel {
-    width: 75%;
     padding-bottom: 10px;
-    visibility: hidden;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* visibility: hidden; */
 }
 
-.current-conditions-panel {
+.current-conditions-box {
     border: 1px solid #C0C0C0;
     border-right: none;
     padding-left: 10px;
     padding-bottom: 30px;
 }
 
-.name-block,
-.uv-index-block {
+.name-block {
     display: flex;
     align-items: center;
 }
 
-#uv-index {
-    margin-left: 5px;
-    padding: 5px 10px;
-}
-
-.forecast-panel {
+.forecast-box {
     padding-top: 50px;
 }
 
@@ -67,34 +58,9 @@ section {
     text-align: center;
 }
 
-.card-header {
-    background-color: blue;
-    color: white;
-}
-
 .card-body {
-    background-color: lightblue;
+    background-color: lightskyblue;
 }
-
-
-
-/* Classes Added to Elements
-
-.favorable {
-    background-color: green;
-    color: white;
-}
-
-.moderate {
-    background-color: yellow;
-    color: black;
-}
-
-.severe {
-    background-color: red;
-    color: white;
-} */
-
 
 /* Viewports Styling*/
 
@@ -103,7 +69,7 @@ section {
         width: 40%;
     }
 
-    .search-button-panel {
+    .search-button-box {
         margin-left: 0px;
     }
 
