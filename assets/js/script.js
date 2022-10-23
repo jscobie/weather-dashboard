@@ -59,13 +59,13 @@ function getListCity(coordinates) {
 
 function getCurrentWeather(data) {
     $(".results-panel").addClass("visible");
+    
+    $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + ".png";
 
-    $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
-    // these need to be re-factored in the data. area
-    $("#temperature")[0].textContent = "Min Temperature: " + data.current.temp.toFixed(1) + " \u2109";
-    $("#temperature")[0].textContent = "Max Temperature: " + data.current.temp.toFixed(1) + " \u2109";
-    $("#humidity")[0].textContent = "Humidity: " + data.current.humidity + "% ";
-    $("#wind-speed")[0].textContent = "Wind Speed: " + data.current.wind_speed.toFixed(1) + " MPH";
+    $("#min-temperature")[0].textContent = "Low Temperature: " + data.list[0].main.temp_min + " \u2109";
+    $("#max-temperature")[0].textContent = "High Temperature: " + data.list[0].main.temp_max + " \u2109";
+    $("#humidity")[0].textContent = "Humidity: " + data.list[0].main.humidity + "% ";
+    $("#wind-speed")[0].textContent = "Wind Speed: " + data.list[0].wind.speed + " MPH";
 
     getFutureWeather(data);
 }
@@ -73,19 +73,42 @@ function getCurrentWeather(data) {
 // entire function needs recheck due to 3 hour forecast, 0, 7, 14, 21, 28, 35 as 8 works but 0, 8, 16, 24, 32, 39 won't
 function getFutureWeather(data) {
     for (let i = 0; i < 5; i++) {
+        var fDate = 0;
+        
+        switch(i) {
+            case 0:
+                fDate = 8;
+                break;
+            case 1:
+                fDate = 16;
+                break;
+            case 2:
+                fDate = 24;
+                break;
+            case 3:
+                fDate = 32;
+                break;
+            case 4:
+                fDate = 39;
+                break;
+        }
+        
         var futureWeather = {
-            date: convertUnixTime(data, i),
-            icon: "http://openweathermap.org/img/wn/" + data.daily[i + 1].weather[0].icon + "@2x.png",
-            temp: data.daily[i + 1].temp.day.toFixed(1),
-            humidity: data.daily[i + 1].humidity
+            date: moment(data.list[fDate].dt_txt).format("M-D-YYYY"),
+            icon: "http://openweathermap.org/img/wn/" + data.list[fDate].weather[0].icon + ".png",
+            minTemp: data.list[fDate].main.temp_min + " \u2109",
+            maxTemp: data.list[fDate].main.temp_max + " \u2109",
+            humidity: data.list[fDate].main.humidity
         }
 
         var currentSelector = "#day-" + i;
         $(currentSelector)[0].textContent = futureWeather.date;
         currentSelector = "#img-" + i;
         $(currentSelector)[0].src = futureWeather.icon;
-        currentSelector = "#temp-" + i;
-        $(currentSelector)[0].textContent = "Temp: " + futureWeather.temp + " \u2109";
+        currentSelector = "#min-temp-" + i;
+        $(currentSelector)[0].textContent = "Low Temp: " + futureWeather.minTemp + " \u2109";
+        currentSelector = "#max-temp-" + i;
+        $(currentSelector)[0].textContent = "High Temp: " + futureWeather.maxTemp + " \u2109";
         currentSelector = "#hum-" + i;
         $(currentSelector)[0].textContent = "Humidity: " + futureWeather.humidity + "%";
     }
