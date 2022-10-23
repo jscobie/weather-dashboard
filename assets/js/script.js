@@ -1,13 +1,5 @@
 const apiKey = "604cd5f925465b3056536dc73b75de09"
 
-// pull in typed city name
-// translate city name to latitude and longitude
-    // get request or api
-// fetch request to get current date forecast data
-// 
-
-// s of 6:12pm on 10/22 the call gets a 401 error, unauthorized?
-
 function findCity() {
     var cityName = titleCase($("#cityName")[0].value.trim());
     cityName = cityName.trim()
@@ -60,7 +52,7 @@ function getListCity(coordinates) {
 function getCurrentWeather(data) {
     $(".results-panel").addClass("visible");
     
-    $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + ".png";
+    $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + "@2x.png";
 
     $("#min-temperature")[0].textContent = "Low Temperature: " + data.list[0].main.temp_min + " \u2109";
     $("#max-temperature")[0].textContent = "High Temperature: " + data.list[0].main.temp_max + " \u2109";
@@ -70,33 +62,32 @@ function getCurrentWeather(data) {
     getFutureWeather(data);
 }
 
-// entire function needs recheck due to 3 hour forecast, 0, 7, 14, 21, 28, 35 as 8 works but 0, 8, 16, 24, 32, 39 won't
 function getFutureWeather(data) {
     for (let i = 0; i < 5; i++) {
         var fDate = 0;
         
         switch(i) {
             case 0:
-                fDate = 8;
+                fDate = 7;
                 break;
             case 1:
-                fDate = 16;
+                fDate = 14;
                 break;
             case 2:
-                fDate = 24;
+                fDate = 21;
                 break;
             case 3:
-                fDate = 32;
+                fDate = 28;
                 break;
             case 4:
-                fDate = 39;
+                fDate = 35;
                 break;
         }
         
         var futureWeather = {
             date: moment(data.list[fDate].dt_txt).format("M-D-YYYY"),
             icon: "http://openweathermap.org/img/wn/" + data.list[fDate].weather[0].icon + ".png",
-            minTemp: data.list[fDate].main.temp_min + " \u2109",
+            // minTemp: data.list[fDate].main.temp_min + " \u2109",
             maxTemp: data.list[fDate].main.temp_max + " \u2109",
             humidity: data.list[fDate].main.humidity
         }
@@ -105,10 +96,10 @@ function getFutureWeather(data) {
         $(currentSelector)[0].textContent = futureWeather.date;
         currentSelector = "#img-" + i;
         $(currentSelector)[0].src = futureWeather.icon;
-        currentSelector = "#min-temp-" + i;
-        $(currentSelector)[0].textContent = "Low Temp: " + futureWeather.minTemp + " \u2109";
+        // currentSelector = "#min-temp-" + i;
+        // $(currentSelector)[0].textContent = "Low Temp: " + futureWeather.minTemp + " \u2109";
         currentSelector = "#max-temp-" + i;
-        $(currentSelector)[0].textContent = "High Temp: " + futureWeather.maxTemp + " \u2109";
+        $(currentSelector)[0].textContent = "High Temp: " + futureWeather.maxTemp;
         currentSelector = "#hum-" + i;
         $(currentSelector)[0].textContent = "Humidity: " + futureWeather.humidity + "%";
     }
