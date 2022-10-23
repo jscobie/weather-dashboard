@@ -1,4 +1,4 @@
-var apiKey = "604cd5f925465b3056536dc73b75de09"
+const apiKey = "604cd5f925465b3056536dc73b75de09"
 
 // pull in typed city name
 // translate city name to latitude and longitude
@@ -10,8 +10,9 @@ var apiKey = "604cd5f925465b3056536dc73b75de09"
 
 function findCity() {
     var cityName = titleCase($("#cityName")[0].value.trim());
-
-    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
+    cityName = cityName.trim()
+    debugger;
+    var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
 
     fetch(apiURL).then(function (response) {
         if (response.ok) {
@@ -21,14 +22,14 @@ function findCity() {
 
                 $("#city-list").append('<button type="button" class="list-group-item list-group-item-light list-group-item-action city-name">' + cityName);
 
-                const lat = data.coord.lat;
-                const lon = data.coord.lon;
+                const lat = data.city.coord.lat;
+                const lon = data.city.coord.lon;
 
                 var latLonPair = lat.toString() + " " + lon.toString();
 
                 localStorage.setItem(cityName, latLonPair);
 
-                apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
+                apiURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
 
                 fetch(apiURL).then(function (newResponse) {
                     if (newResponse.ok) {
@@ -46,8 +47,7 @@ function findCity() {
 
 // This function gets the info for a city already in the list. It does not need to check whether the city exists as it was already checked when the city was first searched for.
 function getListCity(coordinates) {
-    apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
-
+    apiURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
     fetch(apiURL).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -61,7 +61,8 @@ function getCurrentWeather(data) {
     $(".results-panel").addClass("visible");
 
     $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
-    $("#temperature")[0].textContent = "Temperature: " + data.current.temp.toFixed(1) + " \u2109";
+    $("#temperature")[0].textContent = "Min Temperature: " + data.current.temp.toFixed(1) + " \u2109";
+    $("#temperature")[0].textContent = "Max Temperature: " + data.current.temp.toFixed(1) + " \u2109";
     $("#humidity")[0].textContent = "Humidity: " + data.current.humidity + "% ";
     $("#wind-speed")[0].textContent = "Wind Speed: " + data.current.wind_speed.toFixed(1) + " MPH";
 
