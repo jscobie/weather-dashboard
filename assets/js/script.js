@@ -61,6 +61,7 @@ function getCurrentWeather(data) {
     $(".results-panel").addClass("visible");
 
     $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+    // these need to be re-factored in the data. area
     $("#temperature")[0].textContent = "Min Temperature: " + data.current.temp.toFixed(1) + " \u2109";
     $("#temperature")[0].textContent = "Max Temperature: " + data.current.temp.toFixed(1) + " \u2109";
     $("#humidity")[0].textContent = "Humidity: " + data.current.humidity + "% ";
@@ -69,6 +70,7 @@ function getCurrentWeather(data) {
     getFutureWeather(data);
 }
 
+// entire function needs recheck due to 3 hour forecast, 0, 7, 14, 21, 28, 35 as 8 works but 0, 8, 16, 24, 32, 39 won't
 function getFutureWeather(data) {
     for (let i = 0; i < 5; i++) {
         var futureWeather = {
