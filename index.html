@@ -11,12 +11,14 @@
 </head>
 
 <body>
+    <!-- This is the page header -->
     <header class="p-3 mb-2 bg-primary text-white header">
         <h1>Weather Dashboard</h1>
     </header>
 
     <main>
         <section class="search-panel bg-secondary text-white w-25">
+            <!-- this section is the city search box/area - added a clear list button beyond requirements -->
             <div class="search-box">
                 <h3>Enter city name:</h3>
                 <form>
@@ -39,7 +41,9 @@
             </div>
         </section>
 
+        <!-- this section handles all of the forecasts, current and 5 day future -->
         <section class="results-panel w-75">
+            <!-- This segment handles just the current days forecast -->
             <div class="current-conditions-box">
                 <div class="name-block">
                     <h3 id="city-name"></h3>
@@ -60,12 +64,14 @@
                     <p class="current-data" id="wind-speed"></p>
                 </div>
             </div>
+            <!-- this section handles the 5 day future forecast -->
             <div class="forecast-box">
                 <h4>5-Day Forecast:</h4>
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="card">
+                                <!-- this is for today + 1 day (tomorrow) -->
                                 <div class="card-header bg-primary text-white">
                                     <h5 id="day-0"></h5>
                                 </div>
@@ -78,6 +84,7 @@
                         </div>
                         <div class="col">
                             <div class="card">
+                                <!-- this is for today + 2 days -->
                                 <div class="card-header bg-primary text-white">
                                     <h5 id="day-1"></h5>
                                 </div>
@@ -90,6 +97,7 @@
                         </div>
                         <div class="col">
                             <div class="card">
+                                <!-- this is for today + 3 days -->
                                 <div class="card-header bg-primary text-white">
                                     <h5 id="day-2"></h5>
                                 </div>
@@ -102,6 +110,7 @@
                         </div>
                         <div class="col">
                             <div class="card">
+                                <!-- this if for today + 4 days -->
                                 <div class="card-header bg-primary text-white">
                                     <h5 id="day-3"></h5>
                                 </div>
@@ -114,6 +123,7 @@
                         </div>
                         <div class="col">
                             <div class="card">
+                                <!-- this is for today + 5 days -->
                                 <div class="card-header bg-primary text-white">
                                     <h5 id="day-4"></h5>
                                 </div>
