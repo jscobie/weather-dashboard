@@ -1,13 +1,5 @@
-body {
-    margin: 5px;
-}
-
 main {
     display: flex;
-}
-
-section {
-    margin-top: 10px;
 }
 
 .header {
@@ -16,20 +8,17 @@ section {
 }
 
 .search-panel {
-    margin: 10px 20px 0 10px;
+    margin: 0 20px 0 0;
     padding: 20px 0 10px 30px;
 }
 
 .city-list-box {
-    margin-top: 5px;
-}
-
-.city-name {
-    /* width: 89%; */
+    margin-top: 20px;
 }
 
 .results-panel {
     padding-bottom: 10px;
+    /* hides the current and future forecasts until the initial search is completed */
     visibility: hidden;
 }
 
@@ -62,8 +51,8 @@ section {
     background-color: lightsteelblue;
 }
 
-/* Viewports Styling*/
 
+/* Apply media screen settings when resizing page widths for smaller than 575px */
 @media screen and (max-width: 575px) {
     .search-panel {
         width: 40%;

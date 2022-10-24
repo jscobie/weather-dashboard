@@ -1,6 +1,6 @@
 const apiKey = "604cd5f925465b3056536dc73b75de09"
 
-function findCity() {
+function getCity() {
     var cityName = titleCase($("#cityName")[0].value.trim());
     cityName = cityName.trim()
     debugger;
@@ -37,7 +37,6 @@ function findCity() {
     })
 }
 
-// This function gets the info for a city already in the list. It does not need to check whether the city exists as it was already checked when the city was first searched for.
 function getListCity(coordinates) {
     apiURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
     fetch(apiURL).then(function (response) {
@@ -87,7 +86,6 @@ function getFutureWeather(data) {
         var futureWeather = {
             date: moment(data.list[fDate].dt_txt).format("M-D-YYYY"),
             icon: "http://openweathermap.org/img/wn/" + data.list[fDate].weather[0].icon + ".png",
-            // minTemp: data.list[fDate].main.temp_min + " \u2109",
             maxTemp: data.list[fDate].main.temp_max + " \u2109",
             humidity: data.list[fDate].main.humidity
         }
@@ -96,8 +94,6 @@ function getFutureWeather(data) {
         $(currentSelector)[0].textContent = futureWeather.date;
         currentSelector = "#img-" + i;
         $(currentSelector)[0].src = futureWeather.icon;
-        // currentSelector = "#min-temp-" + i;
-        // $(currentSelector)[0].textContent = "Low Temp: " + futureWeather.minTemp + " \u2109";
         currentSelector = "#max-temp-" + i;
         $(currentSelector)[0].textContent = "High Temp: " + futureWeather.maxTemp;
         currentSelector = "#hum-" + i;
@@ -116,17 +112,10 @@ function titleCase(city) {
     return returnedCity;
 }
 
-// This converts the UNIX time that is received from the server.
-function convertUnixTime(data, index) {
-    const dateObject = new Date(data.daily[index + 1].dt * 1000);
-
-    return (dateObject.toLocaleDateString());
-}
-
 $("#search-button").on("click", function (event) {
     event.preventDefault();
 
-    findCity();
+    getCity();
 
     $("form")[0].reset();
 })
