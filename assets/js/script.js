@@ -1,9 +1,11 @@
 const apiKey = "604cd5f925465b3056536dc73b75de09"
 
+// Using the input form get weather using a fetch request of city name to coordinates,
+// set the City to local storage (coordinates) and make the City button,
+// then fetch the data for the forecast
 function getCity() {
     var cityName = titleCase($("#cityName")[0].value.trim());
     cityName = cityName.trim()
-    debugger;
     var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
 
     fetch(apiURL).then(function (response) {
@@ -32,22 +34,26 @@ function getCity() {
                 })
             })
         } else {
+            // If city name is not in list on Open Weather Map, show error/alert
             alert("Cannot find city!");
         }
     })
 }
 
+// Using the coordinates of the city stored in local storage on button creation pull up the weather
 function getListCity(coordinates) {
     apiURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
     fetch(apiURL).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                // on response of data begin the functions for populating forecast
                 getCurrentWeather(data);
             })
         }
     })
 }
 
+// This function uses the fetched data to populate the current forecast (and make visible all forecast elements)
 function getCurrentWeather(data) {
     $(".results-panel").addClass("visible");
     
@@ -58,13 +64,16 @@ function getCurrentWeather(data) {
     $("#humidity")[0].textContent = "Humidity: " + data.list[0].main.humidity + "% ";
     $("#wind-speed")[0].textContent = "Wind Speed: " + data.list[0].wind.speed + " MPH";
 
+    // Calls the future weather forecast function
     getFutureWeather(data);
 }
 
+// This function handles placing the data pulled in getCurrentWeather for the future 5 day forecast blocks
 function getFutureWeather(data) {
     for (let i = 0; i < 5; i++) {
         var fDate = 0;
         
+        // this is used to step through the 0-39 results to get the next date and forecast info
         switch(i) {
             case 0:
                 fDate = 7;
@@ -83,6 +92,7 @@ function getFutureWeather(data) {
                 break;
         }
         
+        // build object of fDate (day to use) for populating
         var futureWeather = {
             date: moment(data.list[fDate].dt_txt).format("M-D-YYYY"),
             icon: "http://openweathermap.org/img/wn/" + data.list[fDate].weather[0].icon + ".png",
@@ -90,6 +100,7 @@ function getFutureWeather(data) {
             humidity: data.list[fDate].main.humidity
         }
 
+        // populate object items into correct html/css elements
         var currentSelector = "#day-" + i;
         $(currentSelector)[0].textContent = futureWeather.date;
         currentSelector = "#img-" + i;
@@ -112,6 +123,7 @@ function titleCase(city) {
     return returnedCity;
 }
 
+// This is the search button event listener, on press it runs the getCity function to populate forecase
 $("#search-button").on("click", function (event) {
     event.preventDefault();
 
@@ -120,6 +132,7 @@ $("#search-button").on("click", function (event) {
     $("form")[0].reset();
 })
 
+// Clear List button listener to clear local storage and reload the page
 $("#del-button").on("click", function (event) {
     event.preventDefault();
 
@@ -127,8 +140,9 @@ $("#del-button").on("click", function (event) {
     location.reload();
 })
 
+// This is a button listener for the remembered cities in the list and processes the call to pull weather
+// from data in localstorage when the button was created.
 $(".city-list-box").on("click", ".city-name", function () {
-
     var coordinates = (localStorage.getItem($(this)[0].textContent)).split(" ");
     coordinates[0] = parseFloat(coordinates[0]);
     coordinates[1] = parseFloat(coordinates[1]);
